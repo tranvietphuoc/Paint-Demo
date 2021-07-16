@@ -1,9 +1,8 @@
-================
 Paint demo using Pygame
 ================
 
 Requirement:
--------------
+----------------
 
 
 poetry::
@@ -11,7 +10,7 @@ poetry::
 
 
 Use:
---------------
+----------------
 
 
 first run command::
