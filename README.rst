@@ -1,23 +1,19 @@
-****************
+================
 Paint demo using Pygame
-****************
+================
 
 Requirement:
-*************
+-------------
 * poetry:
 .. code:: bash
     curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
 
 Use:
-*************
-#. first:
-.. code:: bash
+--------------
+#. first::
     poetry install
 
-#. then:
-.. code:: bash
+#. then::
    poetry run python main.py
-
-
 
