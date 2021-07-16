@@ -2,7 +2,6 @@
 
 
 #### Requirement:
-------------------------
 
 
 * poetry:
@@ -12,7 +11,6 @@ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poet
 
 
 #### Use:
-------------------------
 
 
 1. first run command:
