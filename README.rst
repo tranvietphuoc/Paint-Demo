@@ -4,15 +4,19 @@ Paint demo using Pygame
 
 Requirement:
 -------------
+
+
 poetry::
     curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
 
 Use:
 --------------
-#. first run command::
+
+
+first run command::
     poetry install
 
-#. then run command::
+then run command::
     poetry run python main.py
 
