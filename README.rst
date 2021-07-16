@@ -11,12 +11,10 @@ Requirement:
 
 Use:
 *************
-.. first:: bash
-    :linenodes:
+.. first::
     poetry install
 
-.. then:: bash
-    :linenodes:
+.. then::
    poetry run python main.py
 
 
