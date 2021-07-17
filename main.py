@@ -39,9 +39,6 @@ class Controller:
         return True
 
 
-
-
-
 def grid_init(rows, cols, color):
     grid = []
     for i in range(rows):
@@ -92,7 +89,6 @@ run = True
 clock = pygame.time.Clock()
 grid = grid_init(ROWS, COLS, BG_COLOR)
 draw_color = BLACK
-
 button_y = HEIGHT - TOOLBAR_HEIGHT / 2 - 25
 buttons = [
         Controller(10, button_y, 50, 50, BLACK),
@@ -102,6 +98,7 @@ buttons = [
         Controller(250, button_y, 50, 50, WHITE, "Erase", BLACK),
         Controller(310, button_y, 50, 50, WHITE, "Clear", BLACK)
 ]
+
 
 while run:
     clock.tick(FPS)
@@ -127,5 +124,6 @@ while run:
                         draw_color = BLACK
 
     draw(SCREEN, grid, buttons)
+
 
 pygame.quit()
