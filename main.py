@@ -1,8 +1,18 @@
 from config import *
+import logging
 
 
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+FORMAT = "%(asctime)s - %(levelname)s : %(message)s"
 pygame.display.set_caption("PAINTING DEMO")
+
+logger = logging.getLogger(__name__)  # initialize logger
+stream_handler = logging.StreamHandler()  # initialize handler
+stream_handler.setLevel(logging.INFO)  # set level for handler
+stream_handler.setFormatter(
+    logging.Formatter(FORMAT)
+)  # set formatter for logger
+logger.addHandler(stream_handler)  # add handler
 
 
 class Controller:
@@ -22,8 +32,13 @@ class Controller:
         if self.text:
             controller_font = get_font(22)
             text_surface = controller_font.render(self.text, 1, self.text_color)
-            screen.blit(text_surface, (x + width / 2 -
-                text_surface.get_width()/2, y + height/2 - text_surface.get_height()/2))
+            screen.blit(
+                text_surface,
+                (
+                    x + width / 2 - text_surface.get_width() / 2,
+                    y + height / 2 - text_surface.get_height() / 2,
+                ),
+            )
 
     def clicked(self, pos):
         x, y = pos
@@ -52,27 +67,38 @@ def grid_init(rows, cols, color):
 def render_grid(screen, grid):
     for i, row in enumerate(grid):
         for j, pixel in enumerate(row):
-            pygame.draw.rect(screen, pixel, (j * PIXEL_SIZE, i * PIXEL_SIZE,
-                PIXEL_SIZE, PIXEL_SIZE))
+            pygame.draw.rect(
+                screen,
+                pixel,
+                (j * PIXEL_SIZE, i * PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE),
+            )
 
     if DRAW_GRID_LINES:
         for i in range(ROWS + 1):
-            pygame.draw.line(screen, BLACK, (0, i * PIXEL_SIZE), (WIDTH,
-                i * PIXEL_SIZE))
+            pygame.draw.line(
+                screen, BLACK, (0, i * PIXEL_SIZE), (WIDTH, i * PIXEL_SIZE)
+            )
 
         for i in range(COLS + 1):
-            pygame.draw.line(screen, BLACK, (i * PIXEL_SIZE, 0), (i * PIXEL_SIZE,
-                HEIGHT - TOOLBAR_HEIGHT))
+            pygame.draw.line(
+                screen,
+                BLACK,
+                (i * PIXEL_SIZE, 0),
+                (i * PIXEL_SIZE, HEIGHT - TOOLBAR_HEIGHT),
+            )
+        logger.info("Drawn grid lines success.")
 
 
 def draw(screen, grid, buttons):
     screen.fill(BG_COLOR)
     render_grid(screen, grid)
+    logger.info("Render grid success.")
 
     for button in buttons:
         button.draw(screen)
 
     pygame.display.update()
+    logger.info("Updated success.")
 
 
 def get_row_col_from_pos(pos):
@@ -80,8 +106,11 @@ def get_row_col_from_pos(pos):
     row = y // PIXEL_SIZE
     col = x // PIXEL_SIZE
 
+    logger.info(f"row: {row}, col: {col}")
+
     if row >= ROWS:
         raise IndexError
+
     return row, col
 
 
@@ -91,12 +120,12 @@ grid = grid_init(ROWS, COLS, BG_COLOR)
 draw_color = BLACK
 button_y = HEIGHT - TOOLBAR_HEIGHT / 2 - 25
 buttons = [
-        Controller(10, button_y, 50, 50, BLACK),
-        Controller(70, button_y, 50, 50, RED),
-        Controller(130, button_y, 50, 50, GREEN),
-        Controller(190, button_y, 50, 50, BLUE),
-        Controller(250, button_y, 50, 50, WHITE, "Erase", BLACK),
-        Controller(310, button_y, 50, 50, WHITE, "Clear", BLACK)
+    Controller(10, button_y, 50, 50, BLACK),
+    Controller(70, button_y, 50, 50, RED),
+    Controller(130, button_y, 50, 50, GREEN),
+    Controller(190, button_y, 50, 50, BLUE),
+    Controller(250, button_y, 50, 50, WHITE, "Erase", BLACK),
+    Controller(310, button_y, 50, 50, WHITE, "Clear", BLACK),
 ]
 
 
